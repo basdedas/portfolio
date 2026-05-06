@@ -1,3 +1,5 @@
+export const dynamic = 'force-dynamic';
+
 import clientPromise from "@/app/lib/db";
 import { NextResponse } from "next/server";
 
