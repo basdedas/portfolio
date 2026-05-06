@@ -1,0 +1,12 @@
+[
+  {
+    "title": "Azure Data Pipeline",
+    "stack": ["Python", "Azure Functions", "CosmosDB"],
+    "desc": "Automated ETL process for processing millions of rows."
+  },
+  {
+    "title": "Next.js E-Commerce",
+    "stack": ["Next.js", "Stripe", "Tailwind"],
+    "desc": "Full-stack store with server-side rendering."
+  }
+]
