@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from 'react';
 import { signIn, signOut, useSession } from "next-auth/react";
+import Link from 'next/link';
 
 export default function Home() {
   const { data: session } = useSession();
@@ -80,9 +81,12 @@ export default function Home() {
           {data.map((project) => (
             <div key={project._id} className="group relative p-8 rounded-3xl bg-zinc-900/40 border border-zinc-800/50">
               <div className="relative z-10">
-                <h3 className="text-2xl font-bold mb-3">{project.title}</h3>
+                <Link href={`/projects/${project.slug}`}>
+                  <h3 className="text-2xl font-bold mb-3 hover:text-blue-400 transition-colors cursor-pointer">
+                    {project.title}
+                  </h3>
+                </Link>                
                 <p className="text-zinc-400 mb-8 text-sm leading-relaxed">{project.desc}</p>
-                
                 <button 
                   onClick={() => handleLike(project._id)}
                   className={`flex items-center gap-2 mb-6 px-4 py-2 rounded-xl transition-colors border border-zinc-700/30 ${
