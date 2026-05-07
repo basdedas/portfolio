@@ -56,36 +56,36 @@ export default function Home() {
     <main className="min-h-screen bg-zinc-950 text-white p-12 font-sans">
       <div className="max-w-4xl mx-auto">
         
-        {/* LOGIN HEADER */}
-        <div className="flex justify-between items-center mb-8">
+        {/* LOGIN HEADER - RESPONSIVE FIX APPLIED */}
+        <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 mb-8 w-full">
           
-          {/* Status Badge (Left) */}
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-zinc-900 border border-zinc-800">
-            <div className="h-2 w-2 rounded-full bg-green-500 animate-pulse" />
-            <span className="text-xs font-mono text-zinc-400 text-nowrap overflow-hidden">
+          {/* Status Badge (Left/Top) */}
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-zinc-900 border border-zinc-800 max-w-full">
+            <div className="h-2 w-2 shrink-0 rounded-full bg-green-500 animate-pulse" />
+            <span className="text-xs font-mono text-zinc-400 truncate">
               {session ? `Logged in as ${session.user?.name}` : "System Live: Cloud Verified"}
             </span>
           </div>
           
-          {/* CV and Auth Buttons (Right) */}
-          <div className="flex items-center gap-4">
+          {/* CV and Auth Buttons (Right/Bottom) */}
+          <div className="flex flex-wrap items-center gap-3">
             
             {/* ADDED: CV Button */}
             <a 
               href="/Bas_van_Dijk_CV.pdf" 
               target="_blank"
               rel="noopener noreferrer"
-              className="px-4 py-2 border border-zinc-800 rounded-full text-[10px] font-mono text-zinc-400 hover:text-white hover:border-zinc-500 transition-all uppercase tracking-widest"
+              className="px-4 py-2 border border-zinc-800 rounded-full text-[10px] font-mono text-zinc-400 hover:text-white hover:border-zinc-500 transition-all uppercase tracking-widest whitespace-nowrap"
             >
               [GET_CV_PDF]
             </a>
 
             {/* Auth Buttons */}
             {session ? (
-              <button onClick={() => signOut()} className="text-xs text-zinc-500 hover:text-white transition-colors">Sign Out</button>
+              <button onClick={() => signOut()} className="text-xs text-zinc-500 hover:text-white transition-colors whitespace-nowrap">Sign Out</button>
             ) : (
-              <button onClick={() => signIn('google')} className="bg-white text-black px-4 py-2 rounded-full text-xs font-bold hover:bg-zinc-200 transition-all">
-                Sign in with Google to like and comment
+              <button onClick={() => signIn('google')} className="bg-white text-black px-4 py-2 rounded-full text-[10px] sm:text-xs font-bold hover:bg-zinc-200 transition-all whitespace-nowrap">
+                Sign in <span className="hidden sm:inline">with Google to like and comment</span>
               </button>
             )}
           </div>
