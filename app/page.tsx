@@ -85,7 +85,7 @@ export default function Home() {
               <button onClick={() => signOut()} className="text-xs text-zinc-500 hover:text-white transition-colors">Sign Out</button>
             ) : (
               <button onClick={() => signIn('google')} className="bg-white text-black px-4 py-2 rounded-full text-xs font-bold hover:bg-zinc-200 transition-all">
-                Sign in with Google
+                Sign in with Google to like and comment
               </button>
             )}
           </div>
