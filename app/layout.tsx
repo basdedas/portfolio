@@ -1,6 +1,6 @@
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
-import SessionWrapper from "./components/SessionWrapper"; // Import the new wrapper
+import SessionWrapper from "./components/SessionWrapper"; 
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -19,9 +19,14 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" className={`${geistSans.variable} ${geistMono.variable}`}>
-      <body className="antialiased">
+      <body className="antialiased bg-zinc-950 text-white">
         <SessionWrapper>
-          {children}
+          
+          {/* Main Content (The header is now handled safely inside page.tsx) */}
+          <main className="min-h-screen">
+            {children}
+          </main>
+          
         </SessionWrapper>
       </body>
     </html>

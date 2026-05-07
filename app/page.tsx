@@ -18,17 +18,18 @@ export default function Home() {
         setLoading(false);
       });
   }, []);
-    const handleLike = async (projectId: string) => { // <--- Add projectId here
-      if (!session) {
-        alert("Please sign in to like projects!");
-        return;
-      }
 
-      const res = await fetch("/api/projects/like", {
-        method: "POST",
-        headers: { 'Content-Type': 'application/json' }, // Good practice to add this
-        body: JSON.stringify({ projectId: projectId }), // <--- Use the input here
-      });
+  const handleLike = async (projectId: string) => {
+    if (!session) {
+      alert("Please sign in to like projects!");
+      return;
+    }
+
+    const res = await fetch("/api/projects/like", {
+      method: "POST",
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ projectId: projectId }),
+    });
 
     const result = await res.json();
 
@@ -57,6 +58,8 @@ export default function Home() {
         
         {/* LOGIN HEADER */}
         <div className="flex justify-between items-center mb-8">
+          
+          {/* Status Badge (Left) */}
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-zinc-900 border border-zinc-800">
             <div className="h-2 w-2 rounded-full bg-green-500 animate-pulse" />
             <span className="text-xs font-mono text-zinc-400 text-nowrap overflow-hidden">
@@ -64,13 +67,29 @@ export default function Home() {
             </span>
           </div>
           
-          {session ? (
-            <button onClick={() => signOut()} className="text-xs text-zinc-500 hover:text-white transition-colors">Sign Out</button>
-          ) : (
-            <button onClick={() => signIn('google')} className="bg-white text-black px-4 py-2 rounded-full text-xs font-bold hover:bg-zinc-200 transition-all">
-              Sign in with Google to like and comment
-            </button>
-          )}
+          {/* CV and Auth Buttons (Right) */}
+          <div className="flex items-center gap-4">
+            
+            {/* ADDED: CV Button */}
+            <a 
+              href="/Bas_van_Dijk_CV.pdf" 
+              target="_blank"
+              rel="noopener noreferrer"
+              className="px-4 py-2 border border-zinc-800 rounded-full text-[10px] font-mono text-zinc-400 hover:text-white hover:border-zinc-500 transition-all uppercase tracking-widest"
+            >
+              [GET_CV_PDF]
+            </a>
+
+            {/* Auth Buttons */}
+            {session ? (
+              <button onClick={() => signOut()} className="text-xs text-zinc-500 hover:text-white transition-colors">Sign Out</button>
+            ) : (
+              <button onClick={() => signIn('google')} className="bg-white text-black px-4 py-2 rounded-full text-xs font-bold hover:bg-zinc-200 transition-all">
+                Sign in with Google
+              </button>
+            )}
+          </div>
+
         </div>
 
         <h1 className="text-6xl font-bold tracking-tight mb-4">
